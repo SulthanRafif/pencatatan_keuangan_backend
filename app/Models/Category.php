@@ -8,4 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    /**
+     * Determine which columns are fillable
+     */
+    protected $fillable = [
+        'name'
+    ];
+
+    /**
+     * Specifies the columns that are ignored by eloquent
+     */
+    protected $guarded = ['id'];
+
+    /**
+     * Get the financial records for the category
+     */
+    public function financialRecords()
+    {
+        return $this->hasMany(Profile::class, 'user_id');
+    }
 }
