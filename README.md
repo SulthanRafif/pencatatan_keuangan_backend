@@ -37,3 +37,8 @@ Test - Backend Internship Inagata - Sulthan Rafif
 ## Spesifikasi
 
 -   Laravel 9
+
+## Data login
+
+-   email : admin@admin.com
+-   password : password
