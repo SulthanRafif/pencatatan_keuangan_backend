@@ -33,3 +33,7 @@ Test - Backend Internship Inagata - Sulthan Rafif
     ``
 -   Perintah menjalankan testing untuk API Financial Record:
     ``
+
+## Spesifikasi
+
+-   Laravel 9
