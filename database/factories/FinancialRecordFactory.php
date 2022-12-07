@@ -22,12 +22,18 @@ class FinancialRecordFactory extends Factory
         $income = $this->faker->numberBetween(100000, 500000);
         $expenditure = $this->faker->numberBetween(50000, 100000);
 
+        $user_ids = User::pluck('id')->toArray();
+        $user_id_rand = $user_ids[array_rand($user_ids)];
+
+        $category_ids = Category::pluck('id')->toArray();
+        $category_id_rand = $category_ids[array_rand($category_ids)];
+
         return [
-            'user_id' => $this->faker->numberBetween(1, User::count()),
+            'user_id' => $user_id_rand,
             'income' => $income,
             'expenditure' => $expenditure,
             'balance' => $income - $expenditure,
-            'category_id' => $this->faker->numberBetween(1, Category::count()),
+            'category_id' => $category_id_rand
         ];
     }
 }
