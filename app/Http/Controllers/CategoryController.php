@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Category\CategoryRequest;
 use App\Http\Resources\Category\CategoryCollection;
-use App\Http\Resources\Category\CategoryIndexResource;
 use App\Http\Resources\Category\CategoryShowResource;
 use App\Models\Category;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the categories.
      *
      * @return \Illuminate\Http\Response
      */
@@ -29,7 +28,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created category in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -56,7 +55,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified category.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -76,7 +75,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified category in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -110,7 +109,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
