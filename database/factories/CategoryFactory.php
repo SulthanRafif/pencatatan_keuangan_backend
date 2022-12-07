@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $admin_username = 'Admin';
+
         return [
-            'name' => $this->faker->words(1, true)
+            'name' => $this->faker->words(1, true),
+            'user_id' => User::where('username', $admin_username)->first()->id
         ];
     }
 }
