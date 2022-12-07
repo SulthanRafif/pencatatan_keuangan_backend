@@ -10,7 +10,7 @@ use App\Models\Profile;
 class ProfileController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the profiles.
      *
      * @return \Illuminate\Http\Response
      */
@@ -28,7 +28,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified profile.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -41,7 +41,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified profile in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
