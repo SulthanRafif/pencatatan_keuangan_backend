@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\Auth\RegisterResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PassportAuthController extends Controller
 {
@@ -15,11 +16,24 @@ class PassportAuthController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-        ]);
+        $user = null;
+
+        DB::transaction(function () use ($request, &$user) {
+            $user = User::create([
+                'username' => $request->username,
+                'email' => $request->email,
+                'password' => bcrypt($request->password)
+            ]);
+
+            $user->profile()->create([
+                'fullname' => '',
+                'address' => '',
+                'place_of_birth' => '',
+                'date_of_birth' => '',
+                'profession' => '',
+                'gender' => ''
+            ]);
+        });
 
         if ($user) {
             return new RegisterResource($user);
