@@ -48,9 +48,9 @@ class User extends Authenticatable
     /**
      * Get the profiles for the user
      */
-    public function profiles()
+    public function profile()
     {
-        return $this->hasMany(Profile::class, 'user_id');
+        return $this->hasOne(Profile::class, 'user_id');
     }
 
     /**
@@ -67,5 +67,10 @@ class User extends Authenticatable
     public function categories()
     {
         return $this->hasMany(Category::class, 'user_id');
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }
