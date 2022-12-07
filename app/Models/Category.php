@@ -28,4 +28,12 @@ class Category extends Model
     {
         return $this->hasMany(Profile::class, 'user_id');
     }
+
+    /**
+     * Get the user for the category
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
