@@ -43,13 +43,14 @@ class CategoryController extends Controller
 
         if ($category) {
             return response()->json([
-                'success' => true,
-                'data' => $category->toArray()
+                'status' => true,
+                'data' => $category->toArray(),
+                'message' => 'success'
             ]);
         } else {
             return response()->json([
-                'success' => false,
-                'message' => 'Category not added'
+                'status' => false,
+                'message' => 'Category not added',
             ], 500);
         }
     }
@@ -60,8 +61,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
+        $category = Category::find($id);
+
+        if (!$category) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Category not found'
+            ], 400);
+        }
+
         return new CategoryShowResource($category);
     }
 
@@ -78,7 +88,7 @@ class CategoryController extends Controller
 
         if (!$category) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Category not found'
             ], 400);
         }
@@ -87,13 +97,14 @@ class CategoryController extends Controller
 
         if ($updated) {
             return response()->json([
-                'success' => true,
-                'data' => $category->toArray()
+                'status' => true,
+                'data' => $category->toArray(),
+                'message' => 'Category successfully updated'
             ], 400);
         } else {
             return response()->json([
-                'success' => false,
-                'message' => 'Post can not be updated'
+                'status' => false,
+                'message' => 'Category can not be updated'
             ]);
         }
     }
@@ -110,19 +121,19 @@ class CategoryController extends Controller
 
         if (!$category) {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Category not found'
             ], 400);
         }
 
         if ($category->delete()) {
             return response()->json([
-                'success' => true,
+                'status' => true,
                 'message' => 'Category successfully deleted'
             ]);
         } else {
             return response()->json([
-                'success' => false,
+                'status' => false,
                 'message' => 'Category can not be deleted'
             ], 500);
         }
@@ -133,10 +144,5 @@ class CategoryController extends Controller
         return [
             'name' => $request->name,
         ];
-    }
-
-    public function with($request)
-    {
-        return ['status' => 'success'];
     }
 }
